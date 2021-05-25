@@ -12,6 +12,40 @@
 #include <WiFi.h>
 #include <WebServer.h>
 
+enum Command {
+  MoveUp,
+  MoveDown,
+  Stop
+};
+
+class Observer {
+  public:
+    virtual void update();
+};
+
+class Observable {
+  public:
+    virtual void addObserver(Observer observer);
+    virtual void notifyObservers();
+};
+
+class CommandProvider: public Observable {
+  public:
+    Command command;
+};
+
+class Webserver: public CommandProvider {
+  int command = Stop;
+  
+  void addObserver(Observer observer) {
+    
+  }
+
+  virtual void notifyObservers() {
+    
+  }
+};
+
 const char* ssid     = "ZYXEL-058";
 const char* password = "Tor-in-eine-freie-Welt-3";
 
